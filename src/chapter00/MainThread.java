@@ -1,4 +1,4 @@
-package chapter01;
+package chapter00;
 
 public class MainThread {
 
