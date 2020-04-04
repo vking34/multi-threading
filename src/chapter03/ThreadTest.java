@@ -3,7 +3,7 @@ package chapter03;
 public class ThreadTest {
     public static void main(String[] args){
 
-        CalculateRunnable runnable = new CalculateRunnable(30000000000L);
+        RunnableCalculator runnable = new RunnableCalculator(30000000000L);
 
         Thread t1 = new Thread(runnable);
         t1.setName("High Priority");

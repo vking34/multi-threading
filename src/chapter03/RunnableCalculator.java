@@ -1,10 +1,10 @@
 package chapter03;
 
-public class CalculateRunnable implements Runnable {
+public class RunnableCalculator implements Runnable {
 
     private long value;
 
-    public CalculateRunnable(long value){
+    public RunnableCalculator(long value){
         this.value = value;
     }
 
