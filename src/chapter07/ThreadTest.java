@@ -9,9 +9,10 @@ public class ThreadTest {
         List<Character> list = new ArrayList<>();
 
         Thread thread0 = new StringReverseThread(list, "HELLO");
-        thread0.start();
-
         Thread thread1 = new StringReverseThread(list, "WORLD");
+
+        // it's random to start which thread first
+        thread0.start();
         thread1.start();
 
 //        thread0.join();

@@ -8,34 +8,35 @@ public class StringReverseThread extends Thread {
 
     private List<Character> names;
     private String message;
-    private static Lock LOCK = new ReentrantLock();
+    private static Lock LOCK = new ReentrantLock(true);
 
     StringReverseThread(List<Character> names, String message) {
         this.message = message;
         this.names = names;
     }
 
+    void pleaseLock(){
+        LOCK.lock();
+    }
+
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
+
+//        pleaseLock();
         LOCK.lock();
         try {
-            synchronized (this.names) {
-                System.out.println(Thread.currentThread().getName() + " acquires Names List");
-                for (int i = 0; i < this.message.length(); i++) {
-                    this.names.add(this.message.charAt(i));
-                    Thread.sleep(50);
-                }
-
-                System.out.println(names);
-                System.out.println(Thread.currentThread().getName() + " releases Names List");
+            System.out.println(Thread.currentThread().getName() + " lock.");
+            for (int i = 0; i < this.message.length(); i++) {
+                this.names.add(this.message.charAt(i));
+                Thread.sleep(50);
             }
 
-            Thread.sleep(300);
+            System.out.println(names);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
+            System.out.println(Thread.currentThread().getName() + " unlock.");
             LOCK.unlock();
         }
 
