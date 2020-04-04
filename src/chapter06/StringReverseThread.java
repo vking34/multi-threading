@@ -17,12 +17,14 @@ public class StringReverseThread extends Thread {
         long startTime = System.currentTimeMillis();
         try {
             synchronized (this.names) {
+                System.out.println(Thread.currentThread().getName() + " acquires Names List");
                 for (int i = 0; i < this.message.length(); i++) {
                     this.names.add(this.message.charAt(i));
                     Thread.sleep(50);
                 }
 
                 System.out.println(names);
+                System.out.println(Thread.currentThread().getName() + " releases Names List");
             }
 
             Thread.sleep(300);
